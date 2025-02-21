@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {notification} from 'antd';
 import _ from 'lodash';
 import moment from 'moment';
@@ -230,8 +229,6 @@ export function newSession(originalCaps, attachSessId = null) {
     let host, port, username, accessKey, https, path, headers;
     sessionCaps = addCustomCaps(sessionCaps);
 
-    console.log('sessionCaps', sessionCaps);
-    console.log('session.serverType', session.serverType);
     switch (session.serverType) {
       case SERVER_TYPES.LOCAL:
         host = session.server.local.hostname;
@@ -499,14 +496,12 @@ export function newSession(originalCaps, attachSessId = null) {
       }
 
       case SERVER_TYPES.TESTCRIBE: {
-        //host = process.env.TESTCRIBE_WEBDRIVER_URL || '10.10.10.11';
-        host = process.env.TESTCRIBE_WEBDRIVER_URL || '127.0.0.1';
-        port = 4723;
-
-        path = '/wd/hub';
-        const apikey = session.server.testcribe.apikey || process.env.TESTCRIBE_API_KEY;
-        console.log('apikey', apikey);
-        delete sessionCaps[undefined];
+        host = process.env.TESTCRIBE_WEBDRIVER_URL || 'app.testcribe.com';
+        port = 443;
+        https = true;
+        path = '/gw';
+        const apikey = session.server.testcribe.apiKey || process.env.TESTCRIBE_API_KEY;
+        // delete sessionCaps[undefined];
         if (!apikey) {
           showError(new Error(i18n.t('testcribeCredentialsRequired')));
           return false;
@@ -515,7 +510,7 @@ export function newSession(originalCaps, attachSessId = null) {
           sessionCaps['testcribe:options'] = {};
         }
         sessionCaps['testcribe:options'].apikey = apikey;
-        console.log('sessionCaps', sessionCaps);
+        sessionCaps['appium:apiKey'] = apikey;
         break;
       }
 

@@ -10,7 +10,7 @@ import PerfectoLogo from '../../assets/images/perfecto_logo.svg';
 import RemoteTestKitLogo from '../../assets/images/remotetestkit_logo.svg';
 import RobotQALogo from '../../assets/images/robotqa_logo.svg';
 import SauceLogo from '../../assets/images/sauce_logo.svg';
-import TesctcribeLogo from '../../assets/images/testcribe.png';
+import TesctcribeLogo from '../../assets/images/testcribe_logo.svg';
 import TestingBotLogo from '../../assets/images/testingbot_logo.svg';
 import TVLabsLogo from '../../assets/images/tvlabs_logo.svg';
 import {SERVER_TYPES} from '../../constants/session-builder.js';
